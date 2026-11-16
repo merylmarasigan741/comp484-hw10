@@ -7,43 +7,87 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
     $('.treat-button').click(clickedTreatButton);
     $('.play-button').click(clickedPlayButton);
     $('.exercise-button').click(clickedExerciseButton);
-    $('.snuggle-button').click(clickedSnuggleButton);
-  
-
-  
+    $('.dressup-button').click(clickedDressUpButton);
     
   })
+
+  function Pet(name, image, weight, happiness){
+    this.name = name;
+    this.image = image;
+    this.weight = weight;
+    this.happiness = happiness;
+    
+
+  }
+
+  const pets = [
+    new Pet("Kia", "images/kia.png", 7 ,0 ),
+    new Pet("Dodge", "images/dodge.jpg", 15 ,0 )
+  
+  ]
   
     // Add a variable "pet_info" equal to a object with the name (string), weight (number), and happiness (number) of your pet
-    var pet_info = {name:"Rover", weight:7, happiness:0};
+    var pet_info = {name:"Kia", weight:7, happiness:0};
+    var pet_info2 = {name:"Dodge", weight: 10, happiness: 0}
   
     function clickedTreatButton() {
+      // Make the current card usable with jQuery methods
+      const $card = $(this).closest(".pet");
+      const index = $(".pet").index($card);
+      const pet = pets[index];
+
       // Increase pet happiness
-      ++pet_info.happiness;
+      ++pet.happiness;
       // Increase pet weight
-      ++pet_info.weight;
+      ++pet.weight;
       checkAndUpdatePetInfoInHtml();
+      setItem("bone", $card);
+      flashItem($card);
     }
     
     function clickedPlayButton() {
+      const $card = $(this).closest(".pet");
+      const index = $(".pet").index($card);
+      const pet = pets[index];
+      
       // Increase pet happiness
-      ++pet_info.happiness;
-      // Decrease pet weight
-      pet_info.weight = pet_info.weight > 0 ? pet_info.weight - 1 : 0;
+
+      pet.happiness++;
+      //Increase pet weight, make sure it doesn't go below zero;
+      pet.weight = pet.weight > 0 ? pet.weight - 1 : 0;
+
       checkAndUpdatePetInfoInHtml();
+      setItem("ball", $card);
+      flashItem($card);
     }
     
     function clickedExerciseButton() {
+
+      const $card = $(this).closest(".pet");
+      const index = $(".pet").index($card);
+      const pet = pets[index];
+
+
       // Decrease pet happiness
-      --pet_info.happiness;
+      --pet.happiness;
       // Decrease pet weight
-      pet_info.weight = pet_info.weight > 0 ? pet_info.weight - 1 : 0;
+      pet.weight = pet.weight > 0 ? pet.weight - 1 : 0;
       checkAndUpdatePetInfoInHtml();
+      checkAndUpdatePetInfoInHtml();
+      setItem("ball",$card);
+      flashItem($card);
     }
 
-    function clickedSnuggleButton(){
-      ++pet_info.happiness;
+    function clickedDressUpButton(){
+
+      const $card = $(this).closest(".pet");
+      const index = $(".pet").index($card);
+      const pet = pets[index];
+      ++pet.happiness;
+
       checkAndUpdatePetInfoInHtml();
+      setItem("collar", $card);
+      flashItem($card);
     }
   
     function checkAndUpdatePetInfoInHtml() {
@@ -56,11 +100,37 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       // Add conditional so if weight is lower than zero.
 
     }
+
+    function setItem(item, $card) {
+      const images = {
+        bone: "images/bone.png",
+        ball: "images/ball.png",
+        collar: "images/collar.png"
+      };
+
+      $card.find(".item").attr("src", images[item]);
+    }
+
+    function flashItem($card) {
+      $card.find(".item").stop(true, true).show(300).delay(1000).hide(300);
+    }
     
     // Updates your HTML with the current values in your pet_info object
     function updatePetInfoInHtml() {
-      $('.name').text(pet_info['name']);
-      $('.weight').text(pet_info['weight']);
-      $('.happiness').text(pet_info['happiness']);
+      $(".pet").each(function(index) {
+        const pet = pets[index];
+        const $card = $(this);
+
+         // Find its name, weight, and hapiness element and update the text
+        $card.find(".name").text(pet.name);
+        $card.find(".weight").text(pet.weight);
+        $card.find(".happiness").text(pet.happiness);4
+
+        const weightMesage = pet.weight < 3 ? `${pet.name} is looking a little thin. Make sure you're feeding them enough!` : "";
+        $card.find(".weight-warning").text(weightMesage)
+
+        const happinessMesage = pet.happiness < 0 ? `${pet.name} is looking a little sad. Play with them, give them a treat, or dress them up to cheer them up!` : "";
+        $card.find(".happiness-warning").text(happinessMesage)
+      });
     }
-  
+    

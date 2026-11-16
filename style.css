@@ -2,10 +2,14 @@
 * {
     box-sizing: border-box;
   }
-  
   body {
     font-family: helvetica, arial, sans-serif;
     margin: 25px;
+    background-color: #F7F2EA; /* fallback color */
+    background-image: url("images/background.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: repeat;
   }
   
   main {
@@ -19,7 +23,7 @@
   
   h1 {
     font-weight: bold;
-    color: #000;
+    color: #4B4542;
   }
   
   .bold {
@@ -56,27 +60,70 @@
   .pet-image-container {
     float:left;
     padding:10px;
+    /* border: black solid 1px; */
+    position:relative;
+  }
+
+  .pet-image {
+    display:block;
   }
   
   .dashboard {
     float:left;
     padding:20px;
+    /* border: blue solid 1px; */
   }
   
   .button-container {
     margin-top:20px;
+    display: grid;
+    grid-template-columns: repeat(4,100px);
+    gap: 12px 10px;
+    margin-top: 20px;
   }
   
   .button-container button {
     width: 100px;
-      margin-right: 10px;
-      text-align: center;
-      display: inline-block;
-      float: left;
+    margin-right: 0;
+    text-align: center;
+    display: inline-block;
+    float: none;
     font-size:15px;
-    background-color: #1e2835;
-    border-color: #404853;
+    background-color: #9C565B;
+    /* border-color: #404853; */
+    border: none;
     cursor:pointer;
     background-image: linear-gradient(to bottom,rgba(246,246,246,.1)0%,rgba(30,40,53,0)66%);
     color: #fafafa;
+  }
+
+
+  .item{
+    height:45px;
+    display:none;
+    position:absolute;
+    right:10px;
+    bottom:10px;
+  }
+
+
+  .pet{
+    border: solid #D8C9B8 1px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    width: 60%;
+    margin: 30px auto;
+    background-color:#FFFCF7 ;
+  
+  }
+
+  button{
+    border-radius: 10px;
+  }
+
+  .notif{
+    clear: both;
+    margin-top: 16px;
+    color:#D98E91
   }
