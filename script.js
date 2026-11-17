@@ -127,9 +127,11 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
         $card.find(".weight").text(pet.weight);
         $card.find(".happiness").text(pet.happiness);4
 
+        //While pet's weight is less than 3 lbs, display message
         const weightMesage = pet.weight < 3 ? `${pet.name} is looking a little thin. Make sure you're feeding them enough!` : "";
         $card.find(".weight-warning").text(weightMesage)
 
+        //While pet's happiness is less than 0, display message
         const happinessMesage = pet.happiness < 0 ? `${pet.name} is looking a little sad. Play with them, give them a treat, or dress them up to cheer them up!` : "";
         $card.find(".happiness-warning").text(happinessMesage)
       });
