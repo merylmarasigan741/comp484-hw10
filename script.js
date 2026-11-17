@@ -100,6 +100,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
     }
 
     function setItem(item, $card) {
+      // This methods allows for one img tag to load 4 different images
       const images = {
         bone: "images/bone.png",
         ball: "images/ball.png",
@@ -111,13 +112,14 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
     }
 
     function flashItem($card) {
-      $card.find(".item").stop(true, true).show(300).delay(1000).hide(300); //added delay for a smooth animation
+      $card.find(".item").stop(true, true).show(300).delay(1000).hide(300); //.3 sec show + 1 sec delay + .3 sec hide added for a smooth animation
     }
     
     // Updates your HTML with the current values in your pet_info object
     function updatePetInfoInHtml() {
       $(".pet").each(function(index) {
         const pet = pets[index];
+        //takes an HTML card and stores it as a jQuery object called $card. That lets the code use jQuery methods to work with that specific card
         const $card = $(this);
 
          // Find its name, weight, and hapiness element and update the text
