@@ -23,13 +23,11 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
   const pets = [
     new Pet("Kia", "images/kia.png", 7 ,0 ),
     new Pet("Dodge", "images/dodge.jpg", 15 ,0 )
-  
   ]
   
     // Add a variable "pet_info" equal to a object with the name (string), weight (number), and happiness (number) of your pet
     var pet_info = {name:"Kia", weight:7, happiness:0};
-    var pet_info2 = {name:"Dodge", weight: 10, happiness: 0}
-  
+    var pet_info2 = {name:"Dodge", weight: 10, happiness: 0}  
     function clickedTreatButton() {
       // Make the current card usable with jQuery methods
       const $card = $(this).closest(".pet");
@@ -74,7 +72,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       pet.weight = pet.weight > 0 ? pet.weight - 1 : 0;
       checkAndUpdatePetInfoInHtml();
       checkAndUpdatePetInfoInHtml();
-      setItem("ball",$card);
+      setItem("leash",$card);
       flashItem($card);
     }
 
@@ -105,14 +103,15 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       const images = {
         bone: "images/bone.png",
         ball: "images/ball.png",
-        collar: "images/collar.png"
+        collar: "images/collar.png",
+        leash: "images/leash.png"
       };
 
       $card.find(".item").attr("src", images[item]);
     }
 
     function flashItem($card) {
-      $card.find(".item").stop(true, true).show(300).delay(1000).hide(300);
+      $card.find(".item").stop(true, true).show(300).delay(1000).hide(300); //added delay for a smooth animation
     }
     
     // Updates your HTML with the current values in your pet_info object
