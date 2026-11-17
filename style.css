@@ -100,7 +100,7 @@
 
   .item{
     height:45px;
-    display:none;
+    /* display:none; by default no item is seen */
     position:absolute;
     right:10px;
     bottom:10px;
