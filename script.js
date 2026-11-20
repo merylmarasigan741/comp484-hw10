@@ -55,6 +55,10 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       //Increase pet weight, make sure it doesn't go below zero;
       pet.weight = pet.weight > 0 ? pet.weight - 1 : 0;
 
+      if(pet.weight == 0){
+        console.error(`${pet.name} is very underweight!`)
+      }
+
       checkAndUpdatePetInfoInHtml();
       setItem("ball", $card);
       flashItem($card);
@@ -72,6 +76,9 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       --pet.happiness;
       // Decrease pet weight
       pet.weight = pet.weight > 0 ? pet.weight - 1 : 0;
+      if(pet.weight == 0){
+        console.error($`${pet.name} is very underweight!`)
+      }
       checkAndUpdatePetInfoInHtml();
       checkAndUpdatePetInfoInHtml();
       setItem("leash",$card);
