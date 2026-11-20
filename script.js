@@ -41,7 +41,15 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       checkAndUpdatePetInfoInHtml();
       setItem("bone", $card);
       flashItem($card);
+
+     
       console.log(`${pet.name} was given a treat`)
+
+      console.group()
+      console.groupCollapsed("Stats");
+      console.log("Current Pet Stats:")
+      console.table(pets);
+      console.groupEnd()
     }
     
     function clickedPlayButton() {
@@ -62,7 +70,12 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       checkAndUpdatePetInfoInHtml();
       setItem("ball", $card);
       flashItem($card);
-      console.log(`${pet.name} played`)
+      console.log(`${pet.name} played`);
+      
+      console.group()
+      console.log("Pet Stats:")
+      console.table(pets);
+      console.groupEnd()
     }
     
     function clickedExerciseButton() {
@@ -82,7 +95,14 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       checkAndUpdatePetInfoInHtml();
       setItem("leash",$card);
       flashItem($card);
-      console.log(`${pet.name} played`)
+      
+      //print updates to console
+      console.log(`${pet.name} played`);
+      
+      console.group()
+      console.log("Pet Stats:")
+      console.table(pets);
+      console.groupEnd()
     }
 
     function clickedDressUpButton(){
@@ -95,18 +115,19 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       checkAndUpdatePetInfoInHtml();
       setItem("collar", $card);
       flashItem($card);
+
+      //update console
       console.log(`${pet.name} was dressed up`)
+      
+      console.group()
+      console.log("Pet Stats:")
+      console.table(pets);
+      console.groupEnd()
     }
   
     function checkAndUpdatePetInfoInHtml() {
-      checkWeightAndHappinessBeforeUpdating();  
       
       updatePetInfoInHtml();
-    }
-    
-    function checkWeightAndHappinessBeforeUpdating() {
-      // Add conditional so if weight is lower than zero.
-
     }
 
     function setItem(item, $card) {
