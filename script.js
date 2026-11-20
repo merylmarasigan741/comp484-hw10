@@ -56,7 +56,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       pet.weight = pet.weight > 0 ? pet.weight - 1 : 0;
 
       if(pet.weight == 0){
-        console.error(`${pet.name} is very underweight!`)
+        console.error(`${pet.name}'s weight at 0!`)
       }
 
       checkAndUpdatePetInfoInHtml();
@@ -140,6 +140,10 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
 
         //While pet's weight is less than 3 lbs, display message
         const weightMesage = pet.weight < 3 ? `${pet.name} is looking a little thin. Make sure you're feeding them enough!` : "";
+
+        if(pet.weight < 3){
+          console.warning(`${pet.name} is underweight!`)
+        }
         $card.find(".weight-warning").text(weightMesage)
 
         //While pet's happiness is less than 0, display message
