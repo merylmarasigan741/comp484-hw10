@@ -41,6 +41,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       checkAndUpdatePetInfoInHtml();
       setItem("bone", $card);
       flashItem($card);
+      console.log(`${pet.name} was given a treat`)
     }
     
     function clickedPlayButton() {
@@ -57,6 +58,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       checkAndUpdatePetInfoInHtml();
       setItem("ball", $card);
       flashItem($card);
+      console.log(`${pet.name} played`)
     }
     
     function clickedExerciseButton() {
@@ -74,6 +76,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       checkAndUpdatePetInfoInHtml();
       setItem("leash",$card);
       flashItem($card);
+      console.log(`${pet.name} played`)
     }
 
     function clickedDressUpButton(){
@@ -86,6 +89,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       checkAndUpdatePetInfoInHtml();
       setItem("collar", $card);
       flashItem($card);
+      console.log(`${pet.name} was dressed up`)
     }
   
     function checkAndUpdatePetInfoInHtml() {
