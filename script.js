@@ -80,7 +80,6 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
         console.error($`${pet.name} is very underweight!`)
       }
       checkAndUpdatePetInfoInHtml();
-      checkAndUpdatePetInfoInHtml();
       setItem("leash",$card);
       flashItem($card);
       console.log(`${pet.name} played`)
@@ -149,6 +148,10 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
         //While pet's happiness is less than 0, display message
         const happinessMesage = pet.happiness < 0 ? `${pet.name} is looking a little sad. Play with them, give them a treat, or dress them up to cheer them up!` : "";
         $card.find(".happiness-warning").text(happinessMesage)
+
+        if (pet.happiness < 0){
+          console.error(`${pet.name} is depressed!`)
+        }
       });
     }
     
