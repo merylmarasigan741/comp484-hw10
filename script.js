@@ -36,6 +36,9 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
 
       // Increase pet happiness
       ++pet.happiness;
+
+      //To trigger TypeError
+      pet.happiness();
       // Increase pet weight
       ++pet.weight;
       checkAndUpdatePetInfoInHtml();
@@ -59,6 +62,10 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       
       // Increase pet happiness
 
+      //For debugging example
+      //pet.happiness+= 2;
+
+      //bug fix 
       pet.happiness++;
       //Increase pet weight, make sure it doesn't go below zero;
       pet.weight = pet.weight > 0 ? pet.weight - 1 : 0;
@@ -73,7 +80,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       console.log(`${pet.name} played`);
       
       console.group()
-      console.log("Pet Stats:")
+      console.custom("Pet Stats:")
       console.table(pets);
       console.groupEnd()
     }
@@ -84,9 +91,22 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       const index = $(".pet").index($card);
       const pet = pets[index];
 
+      //To Trigger Performance warning
+      const start = performance.now(); 
+      while(performance.now() - start < 100){
+
+      }
+
+      const duration = performance.now() - start;
+      if (duration > 50) {
+        console.warn(`Exercise handler blocked for ${duration.toFixed(0)} ms`);
+      }
+
 
       // Decrease pet happiness
       --pet.happiness;
+      //pet.happiness();
+
       // Decrease pet weight
       pet.weight = pet.weight > 0 ? pet.weight - 1 : 0;
       if(pet.weight == 0){
@@ -97,10 +117,10 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       flashItem($card);
       
       //print updates to console
-      console.log(`${pet.name} played`);
+      console.log(`${pet.name} exercised`);
       
       console.group()
-      console.log("Pet Stats:")
+      console.custom("Pet Stats:")
       console.table(pets);
       console.groupEnd()
     }
@@ -120,10 +140,11 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       console.log(`${pet.name} was dressed up`)
       
       console.group()
-      console.log("Pet Stats:")
+      console.custom("Pet Stats:");
       console.table(pets);
       console.groupEnd()
     }
+
   
     function checkAndUpdatePetInfoInHtml() {
       
@@ -146,6 +167,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       $card.find(".item").stop(true, true).show(300).delay(1000).hide(300); //.3 sec show + 1 sec delay + .3 sec hide added for a smooth animation
     }
     
+    
     // Updates your HTML with the current values in your pet_info object
     function updatePetInfoInHtml() {
       $(".pet").each(function(index) {
@@ -162,7 +184,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
         const weightMesage = pet.weight < 3 ? `${pet.name} is looking a little thin. Make sure you're feeding them enough!` : "";
 
         if(pet.weight < 3){
-          console.warning(`${pet.name} is underweight!`)
+          console.warn(`${pet.name} is underweight!`)
         }
         $card.find(".weight-warning").text(weightMesage)
 
@@ -173,6 +195,15 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
         if (pet.happiness < 0){
           console.error(`${pet.name} is depressed!`)
         }
+
+        console.custom = function (message, color=`#9C565B`){
+          console.log(
+                    `%c[GigaPets] %c${message}`,
+            `color: ${color}; font-weight: bold;`,
+            'color: inherit;'
+          );
+        };
+
       });
     }
     
